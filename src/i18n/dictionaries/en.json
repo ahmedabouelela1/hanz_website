@@ -1,0 +1,251 @@
+{
+  "brand": {
+    "name": "hanz",
+    "suffix": "Industry",
+    "tagline": "Engineered to endure."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "catalog": "Catalog",
+    "partners": "Partners",
+    "news": "News",
+    "contact": "Contact",
+    "quote": "Request a Quote",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "cta": {
+    "requestQuote": "Request a quote",
+    "viewCatalog": "View catalog",
+    "getInTouch": "Get in touch",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "explore": "Explore",
+    "back": "Back",
+    "sending": "Sending…",
+    "send": "Send inquiry"
+  },
+  "home": {
+    "hero": {
+      "kicker": "Precision manufacturing · Est. 1998",
+      "titleLine1": "We build the",
+      "titleAccent": "components",
+      "titleLine2": "industry runs on.",
+      "lead": "hanz Industry engineers and manufactures precision metal components and industrial assemblies for partners across construction, energy, and heavy equipment.",
+      "stat1Value": "26+",
+      "stat1Label": "Years in production",
+      "stat2Value": "40k m²",
+      "stat2Label": "Manufacturing floor",
+      "stat3Value": "12",
+      "stat3Label": "Export markets"
+    },
+    "capabilities": {
+      "kicker": "Capabilities",
+      "title": "A full-stack industrial partner",
+      "lead": "From raw stock to finished, inspected assemblies — engineered under one roof.",
+      "items": [
+        {
+          "no": "01",
+          "title": "CNC Machining",
+          "body": "Multi-axis milling and turning held to ±0.01 mm across steel, aluminium, and alloy stock."
+        },
+        {
+          "no": "02",
+          "title": "Metal Fabrication",
+          "body": "Laser cutting, forming, and certified welding for structural and precision assemblies."
+        },
+        {
+          "no": "03",
+          "title": "Surface Treatment",
+          "body": "Powder coating, anodizing, and galvanizing calibrated for corrosion and fatigue life."
+        },
+        {
+          "no": "04",
+          "title": "Quality Assurance",
+          "body": "In-house metrology, CMM inspection, and full material traceability on every batch."
+        }
+      ]
+    },
+    "process": {
+      "kicker": "How we work",
+      "title": "From brief to delivery",
+      "steps": [
+        { "no": "01", "title": "Consult & engineer", "body": "We review specs, DFM, and tolerances with your team before a single cut." },
+        { "no": "02", "title": "Prototype & validate", "body": "Rapid first-article samples, inspected and signed off against your drawings." },
+        { "no": "03", "title": "Produce at scale", "body": "Batch production on scheduled lines with live quality gates at each stage." },
+        { "no": "04", "title": "Inspect & ship", "body": "Final CMM inspection, certification, and logistics to your dock — on time." }
+      ]
+    },
+    "catalogPreview": {
+      "kicker": "Catalog",
+      "title": "Standardized product lines",
+      "lead": "Proven, in-stock components — ready to configure for your specification."
+    },
+    "partners": {
+      "kicker": "Trusted by",
+      "title": "Partners who build with us"
+    },
+    "stats": {
+      "title": "Built on measurable outcomes",
+      "items": [
+        { "value": "99.4%", "label": "On-spec delivery rate" },
+        { "value": "2.1M", "label": "Parts shipped annually" },
+        { "value": "48h", "label": "Average quote turnaround" },
+        { "value": "ISO 9001", "label": "Certified quality system" }
+      ]
+    },
+    "ctaBand": {
+      "kicker": "Start a project",
+      "title": "Have a drawing? Let's put it into production.",
+      "lead": "Send us your specification and receive an engineered quotation within two working days."
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "About hanz Industry",
+      "title": "Three decades of engineered precision.",
+      "lead": "What began as a single machine shop is today a vertically integrated manufacturer serving industry across the region and beyond."
+    },
+    "philosophy": {
+      "kicker": "Our philosophy",
+      "title": "Tolerance is a promise, not a target.",
+      "body": "We treat every dimension on a drawing as a commitment. That discipline — measured, documented, and repeatable — is why partners return to us for the work that cannot fail."
+    },
+    "history": {
+      "kicker": "History",
+      "title": "The hanz timeline",
+      "milestones": [
+        { "year": "1998", "title": "Founded", "body": "hanz opens a three-machine shop serving local fabricators." },
+        { "year": "2006", "title": "First export", "body": "Precision components ship to European heavy-equipment OEMs." },
+        { "year": "2014", "title": "ISO 9001", "body": "Full quality-management certification and in-house metrology lab." },
+        { "year": "2021", "title": "40k m² plant", "body": "New automated production hall doubles output capacity." }
+      ]
+    },
+    "leadership": {
+      "kicker": "Leadership",
+      "title": "The people behind the precision",
+      "members": [
+        { "name": "Hanz Al-Rashid", "role": "Founder & Chairman", "bio": "Set the tolerance-first culture that still defines the floor." },
+        { "name": "Nour Adel", "role": "Chief Operations Officer", "bio": "Runs a lean, gated production system across every line." },
+        { "name": "Karim Fathy", "role": "Head of Engineering", "bio": "Leads DFM and metrology from brief to first article." }
+      ]
+    },
+    "values": {
+      "kicker": "What we stand for",
+      "title": "Principles on the floor",
+      "items": [
+        { "no": "01", "title": "Measure everything", "body": "If it isn't measured, it isn't manufactured." },
+        { "no": "02", "title": "Own the outcome", "body": "We stand behind every part that leaves the plant." },
+        { "no": "03", "title": "Engineer for life", "body": "We design for fatigue, corrosion, and the long run." }
+      ]
+    }
+  },
+  "catalog": {
+    "hero": {
+      "kicker": "Product catalog",
+      "title": "Standardized component lines",
+      "lead": "Browse our proven product families. Every line is configurable to your material, tolerance, and finish."
+    },
+    "filters": { "all": "All categories" },
+    "card": { "spec": "Specification", "from": "Configurable" },
+    "detail": {
+      "specsTitle": "Technical specification",
+      "applicationsTitle": "Applications",
+      "cta": "Request this product"
+    },
+    "empty": "No products in this category yet."
+  },
+  "partners": {
+    "hero": {
+      "kicker": "Partners & clients",
+      "title": "The network we manufacture for",
+      "lead": "From regional fabricators to global OEMs — the partners who trust hanz with critical components."
+    },
+    "become": {
+      "kicker": "Become a partner",
+      "title": "Manufacture with hanz",
+      "lead": "Tell us about your programme and we'll scope a partnership built on measurable delivery."
+    }
+  },
+  "news": {
+    "hero": {
+      "kicker": "News & insight",
+      "title": "From the factory floor",
+      "lead": "Announcements, capability updates, and engineering notes from hanz Industry."
+    },
+    "readTime": "min read",
+    "empty": "No articles published yet.",
+    "backToNews": "All news"
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Contact",
+      "title": "Let's talk production.",
+      "lead": "Reach the hanz team directly, or send a message and we'll respond within one working day."
+    },
+    "info": {
+      "addressLabel": "Plant & head office",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "hoursLabel": "Working hours",
+      "hoursValue": "Sun–Thu · 08:00–18:00"
+    },
+    "form": {
+      "title": "Send a message",
+      "name": "Full name",
+      "company": "Company",
+      "email": "Email address",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "How can we help?",
+      "success": "Thanks — your message is in. We'll be in touch within one working day.",
+      "error": "Something went wrong. Please try again or email us directly.",
+      "required": "This field is required.",
+      "invalidEmail": "Enter a valid email address."
+    }
+  },
+  "quote": {
+    "hero": {
+      "kicker": "Request a quotation",
+      "title": "Get an engineered quote.",
+      "lead": "Share your specification and volumes. Our engineering team returns a costed, DFM-reviewed quotation within two working days."
+    },
+    "form": {
+      "contactSection": "Your details",
+      "projectSection": "Project details",
+      "name": "Full name",
+      "company": "Company",
+      "email": "Email address",
+      "phone": "Phone",
+      "service": "Service required",
+      "servicePlaceholder": "Select a capability",
+      "services": ["CNC Machining", "Metal Fabrication", "Surface Treatment", "Assembly", "Other"],
+      "quantity": "Estimated quantity",
+      "material": "Material",
+      "deadline": "Target date",
+      "details": "Specification & notes",
+      "detailsPlaceholder": "Tolerances, finish, drawings available, delivery terms…",
+      "submit": "Request quotation",
+      "success": "Received. Our engineering team will send your quotation within two working days.",
+      "error": "Something went wrong. Please try again or email us directly."
+    }
+  },
+  "footer": {
+    "tagline": "Precision metal components and industrial assemblies, engineered to endure.",
+    "explore": "Explore",
+    "company": "Company",
+    "contact": "Contact",
+    "newsletter": "Factory updates",
+    "newsletterLead": "Capability news and engineering notes. No noise.",
+    "newsletterPlaceholder": "Work email",
+    "subscribe": "Subscribe",
+    "rights": "All rights reserved.",
+    "builtBy": "Built by Clybrid"
+  },
+  "notFound": {
+    "title": "Off the blueprint.",
+    "lead": "This page doesn't exist — or it's been retooled. Let's get you back on the line.",
+    "home": "Back to home"
+  }
+}
