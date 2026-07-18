@@ -13,7 +13,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const products = await loadCatalogProducts();
+  const products = await loadCatalogProducts("en");
   return locales.flatMap((locale) =>
     products.map((p) => ({ locale, slug: p.slug })),
   );
@@ -21,9 +21,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const product = await loadProductBySlug(slug);
+  const product = await loadProductBySlug(slug, isLocale(locale) ? locale : "en");
   if (!product) return { title: "Product" };
-  void locale;
   return { title: product.title, description: product.summary };
 }
 
@@ -31,7 +30,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
-  const product = await loadProductBySlug(slug);
+  const product = await loadProductBySlug(slug, locale);
   if (!product) notFound();
 
   return (
@@ -85,9 +84,9 @@ export default async function ProductDetailPage({ params }: Props) {
               {dict.catalog.detail.specsTitle}
             </h2>
             <dl className="mt-6 border-t border-ink">
-              {product.specs.map((spec) => (
+              {(product.specs ?? []).map((spec, i) => (
                 <div
-                  key={spec.label}
+                  key={`${spec.label}-${i}`}
                   className="flex items-center justify-between border-b border-hairline py-4"
                 >
                   <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-steel-500">
@@ -106,7 +105,7 @@ export default async function ProductDetailPage({ params }: Props) {
               {dict.catalog.detail.applicationsTitle}
             </h2>
             <ul className="mt-6 space-y-3">
-              {product.applications.map((app) => (
+              {(product.applications ?? []).map((app) => (
                 <li
                   key={app}
                   className="flex items-center gap-3 border-b border-hairline py-3 text-steel-700"
@@ -120,7 +119,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
 
         {/* gallery */}
-        {product.gallery.length > 0 && (
+        {(product.gallery?.length ?? 0) > 0 && (
           <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-3">
             {product.gallery.map((src, i) => (
               <Reveal key={src} delay={i * 0.06}>

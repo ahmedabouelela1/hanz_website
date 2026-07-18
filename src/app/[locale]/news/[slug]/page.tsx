@@ -14,15 +14,15 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const articles = await loadNews();
+  const articles = await loadNews("en");
   return locales.flatMap((locale) =>
     articles.map((a) => ({ locale, slug: a.slug })),
   );
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
-  const article = await loadNewsBySlug(slug);
+  const { locale, slug } = await params;
+  const article = await loadNewsBySlug(slug, isLocale(locale) ? locale : "en");
   if (!article) return { title: "News" };
   return { title: article.title, description: article.excerpt };
 }
@@ -31,7 +31,7 @@ export default async function NewsDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
-  const article = await loadNewsBySlug(slug);
+  const article = await loadNewsBySlug(slug, locale);
   if (!article) notFound();
 
   return (
@@ -73,9 +73,12 @@ export default async function NewsDetailPage({ params }: Props) {
 
       <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 lg:py-20">
         <div className="space-y-6 text-lg leading-relaxed text-steel-700">
-          {article.body.split("\n\n").map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+          {(article.body || "")
+            .split("\n\n")
+            .filter(Boolean)
+            .map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
         </div>
       </section>
 

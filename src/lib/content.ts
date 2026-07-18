@@ -4,6 +4,7 @@ import type {
   NewsArticle,
   Partner,
 } from "@/types/content";
+import type { Locale } from "@/i18n/config";
 import {
   catalogCategories,
   catalogProducts,
@@ -14,77 +15,159 @@ import { normalizeImageList, normalizeImageUrl } from "./images";
 import { apiGet } from "./api";
 import { cache } from "react";
 
-function normalizeProduct(product: CatalogProduct): CatalogProduct {
+function normalizeProduct(product: Partial<CatalogProduct>): CatalogProduct {
+  const specs = Array.isArray(product.specs)
+    ? product.specs
+        .filter((s): s is { label: string; value: string } => !!s && typeof s === "object")
+        .map((s) => ({
+          label: String(s.label ?? ""),
+          value: String(s.value ?? ""),
+        }))
+    : [];
+
+  const applications = Array.isArray(product.applications)
+    ? product.applications.map((a) => String(a ?? "")).filter(Boolean)
+    : [];
+
   return {
-    ...product,
-    image: normalizeImageUrl(product.image),
-    gallery: normalizeImageList(product.gallery),
+    slug: product.slug ?? "",
+    category: product.category ?? "",
+    categoryLabel: product.categoryLabel ?? "",
+    title: product.title ?? "",
+    summary: product.summary ?? "",
+    description: product.description ?? "",
+    image: normalizeImageUrl(product.image ?? ""),
+    gallery: normalizeImageList(product.gallery ?? []),
+    specs,
+    applications,
+    featured: Boolean(product.featured),
   };
 }
 
-function normalizeNews(article: NewsArticle): NewsArticle {
+function normalizeNews(article: Partial<NewsArticle>): NewsArticle {
   return {
-    ...article,
-    image: normalizeImageUrl(article.image),
+    slug: article.slug ?? "",
+    title: article.title ?? "",
+    excerpt: article.excerpt ?? "",
+    body: article.body ?? "",
+    image: normalizeImageUrl(article.image ?? ""),
+    category: article.category ?? "",
+    author: article.author ?? "",
+    publishedAt: article.publishedAt ?? "",
+    readMinutes: Number(article.readMinutes) || 0,
+    featured: Boolean(article.featured),
+  };
+}
+
+function normalizePartner(partner: Partial<Partner>): Partner {
+  return {
+    slug: partner.slug ?? "",
+    name: partner.name ?? "",
+    sector: partner.sector ?? "",
+    logo: partner.logo ?? "",
+    featured: Boolean(partner.featured),
+    blurb: partner.blurb ?? "",
+  };
+}
+
+function normalizeCategory(category: Partial<CatalogCategory>): CatalogCategory {
+  return {
+    slug: category.slug ?? "",
+    title: category.title ?? "",
   };
 }
 
 // Content façade. Each loader tries the Laravel API first and falls back to
-// local seed data, so pages never depend on the backend being up.
-// Wrapped in React cache() to dedupe within a single request/render.
+// local seed data only when the fetch fails (null), so an intentional empty
+// CMS list stays empty. Wrapped in React cache() — keyed by locale.
+//
+// Seed is English-only offline stub; with the API up, ?locale= drives bilingual fields.
 
-export const loadCatalogCategories = cache(async (): Promise<CatalogCategory[]> => {
-  const remote = await apiGet<CatalogCategory[]>("/catalog/categories");
-  return remote?.length ? remote : catalogCategories;
-});
-
-export const loadCatalogProducts = cache(async (): Promise<CatalogProduct[]> => {
-  const remote = await apiGet<CatalogProduct[]>("/catalog/products");
-  const list = remote?.length ? remote : catalogProducts;
-  return list.map(normalizeProduct);
-});
-
-export const loadFeaturedProducts = cache(async (): Promise<CatalogProduct[]> => {
-  const all = await loadCatalogProducts();
-  const featured = all.filter((p) => p.featured);
-  return (featured.length ? featured : all).slice(0, 3);
-});
-
-export const loadProductBySlug = cache(
-  async (slug: string): Promise<CatalogProduct | null> => {
-    const all = await loadCatalogProducts();
-    return all.find((p) => p.slug === slug) ?? null;
+export const loadCatalogCategories = cache(
+  async (locale: Locale = "en"): Promise<CatalogCategory[]> => {
+    const remote = await apiGet<CatalogCategory[]>("/catalog/categories", { locale });
+    if (remote !== null) return remote.map(normalizeCategory);
+    return catalogCategories.map(normalizeCategory);
   },
 );
 
-export const loadPartners = cache(async (): Promise<Partner[]> => {
-  const remote = await apiGet<Partner[]>("/partners");
-  return remote?.length ? remote : partners;
+export const loadCatalogProducts = cache(
+  async (locale: Locale = "en"): Promise<CatalogProduct[]> => {
+    const remote = await apiGet<CatalogProduct[]>("/catalog/products", { locale });
+    if (remote !== null) return remote.map(normalizeProduct);
+    return catalogProducts.map(normalizeProduct);
+  },
+);
+
+export const loadFeaturedProducts = cache(
+  async (locale: Locale = "en"): Promise<CatalogProduct[]> => {
+    const all = await loadCatalogProducts(locale);
+    const featured = all.filter((p) => p.featured);
+    return (featured.length ? featured : all).slice(0, 3);
+  },
+);
+
+export const loadProductBySlug = cache(
+  async (slug: string, locale: Locale = "en"): Promise<CatalogProduct | null> => {
+    const remote = await apiGet<CatalogProduct>(`/catalog/products/${encodeURIComponent(slug)}`, {
+      locale,
+    });
+    if (remote !== null) return normalizeProduct(remote);
+
+    // Detail endpoint miss: only fall back to seed when the API is unreachable
+    // (no URL / network). If the API is up, a 404 means the product is gone.
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      const list = await apiGet<CatalogProduct[]>("/catalog/products", { locale });
+      if (list !== null) return null;
+    }
+
+    return (
+      catalogProducts.map(normalizeProduct).find((p) => p.slug === slug) ?? null
+    );
+  },
+);
+
+export const loadPartners = cache(async (locale: Locale = "en"): Promise<Partner[]> => {
+  const remote = await apiGet<Partner[]>("/partners", { locale });
+  if (remote !== null) return remote.map(normalizePartner);
+  return partners.map(normalizePartner);
 });
 
-export const loadFeaturedPartners = cache(async (): Promise<Partner[]> => {
-  const all = await loadPartners();
-  const featured = all.filter((p) => p.featured);
-  return featured.length ? featured : all;
-});
+export const loadFeaturedPartners = cache(
+  async (locale: Locale = "en"): Promise<Partner[]> => {
+    const all = await loadPartners(locale);
+    const featured = all.filter((p) => p.featured);
+    return featured.length ? featured : all;
+  },
+);
 
-export const loadNews = cache(async (): Promise<NewsArticle[]> => {
-  const remote = await apiGet<NewsArticle[]>("/news");
-  const list = remote?.length ? remote : newsArticles;
-  return [...list].map(normalizeNews).sort((a, b) =>
-    b.publishedAt.localeCompare(a.publishedAt),
+export const loadNews = cache(async (locale: Locale = "en"): Promise<NewsArticle[]> => {
+  const remote = await apiGet<NewsArticle[]>("/news", { locale });
+  const list =
+    remote !== null ? remote.map(normalizeNews) : newsArticles.map(normalizeNews);
+  return [...list].sort((a, b) =>
+    (b.publishedAt || "").localeCompare(a.publishedAt || ""),
   );
 });
 
-export const loadFeaturedNews = cache(async (): Promise<NewsArticle[]> => {
-  const all = await loadNews();
-  const featured = all.filter((n) => n.featured);
-  return (featured.length ? featured : all).slice(0, 3);
-});
+export const loadFeaturedNews = cache(
+  async (locale: Locale = "en"): Promise<NewsArticle[]> => {
+    const all = await loadNews(locale);
+    const featured = all.filter((n) => n.featured);
+    return (featured.length ? featured : all).slice(0, 3);
+  },
+);
 
 export const loadNewsBySlug = cache(
-  async (slug: string): Promise<NewsArticle | null> => {
-    const all = await loadNews();
-    return all.find((n) => n.slug === slug) ?? null;
+  async (slug: string, locale: Locale = "en"): Promise<NewsArticle | null> => {
+    const remote = await apiGet<NewsArticle>(`/news/${encodeURIComponent(slug)}`, { locale });
+    if (remote !== null) return normalizeNews(remote);
+
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      const list = await apiGet<NewsArticle[]>("/news", { locale });
+      if (list !== null) return null;
+    }
+
+    return newsArticles.map(normalizeNews).find((n) => n.slug === slug) ?? null;
   },
 );

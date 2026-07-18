@@ -1,6 +1,6 @@
 // Domain content types shared by the public site.
-// These mirror the hanz Laravel API resource shapes (Src\Domain\*\Http\Resources),
-// so the content loaders can swap from local seed to the API without touching pages.
+// These mirror the hanz Laravel API resource shapes, so the content loaders
+// can swap from local seed to the API without touching pages.
 
 import type { Locale } from "@/i18n/config";
 

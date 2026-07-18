@@ -16,8 +16,8 @@ const STATIC_ROUTES = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteUrl();
   const [products, news] = await Promise.all([
-    loadCatalogProducts(),
-    loadNews(),
+    loadCatalogProducts("en"),
+    loadNews("en"),
   ]);
 
   const entries: MetadataRoute.Sitemap = [];
@@ -40,9 +40,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
     for (const article of news) {
+      const published = article.publishedAt
+        ? new Date(article.publishedAt)
+        : new Date();
       entries.push({
         url: `${base}/${locale}/news/${article.slug}`,
-        lastModified: new Date(article.publishedAt),
+        lastModified: Number.isNaN(published.getTime()) ? new Date() : published,
         changeFrequency: "yearly",
         priority: 0.5,
       });

@@ -95,6 +95,12 @@
         { "value": "ISO 9001", "label": "Certified quality system" }
       ]
     },
+    "factory": {
+      "kicker": "The floor",
+      "title": "Real machines. Real throughput.",
+      "lead": "A look inside our production halls — hydraulic presses, die-casting cells, and stamping bays running under one quality system.",
+      "cta": "Tour the plant"
+    },
     "ctaBand": {
       "kicker": "Start a project",
       "title": "Have a drawing? Let's put it into production.",
@@ -111,6 +117,11 @@
       "kicker": "Our philosophy",
       "title": "Tolerance is a promise, not a target.",
       "body": "We treat every dimension on a drawing as a commitment. That discipline — measured, documented, and repeatable — is why partners return to us for the work that cannot fail."
+    },
+    "facility": {
+      "kicker": "Inside the plant",
+      "title": "Where the work happens",
+      "lead": "Heritage presses and modern cells on the same floor — maintained, scheduled, and photographed as they actually run."
     },
     "history": {
       "kicker": "History",
@@ -166,7 +177,8 @@
       "kicker": "Become a partner",
       "title": "Manufacture with hanz",
       "lead": "Tell us about your programme and we'll scope a partnership built on measurable delivery."
-    }
+    },
+    "empty": "No partners listed yet."
   },
   "news": {
     "hero": {

@@ -48,7 +48,9 @@ export function CatalogCard({
 
         <div className="mt-5 flex items-center justify-between border-t border-hairline pt-4">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-steel-500">
-            {specLabel}: {product.specs[0]?.value}
+            {product.specs[0]?.value
+              ? `${specLabel}: ${product.specs[0].value}`
+              : product.categoryLabel}
           </span>
           <span className="font-mono text-lg text-ink transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">
             →

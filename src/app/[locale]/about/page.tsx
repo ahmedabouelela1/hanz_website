@@ -2,10 +2,12 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { factoryPhotos } from "@/lib/factory";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
+import { FacilityGallery } from "@/components/about/FacilityGallery";
 import { CtaBand } from "@/components/home/CtaBand";
 
 export async function generateMetadata({
@@ -43,8 +45,8 @@ export default async function AboutPage({
           <Reveal className="relative">
             <div className="tech-frame relative aspect-[4/3] w-full border border-ink/10">
               <Image
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
-                alt="hanz Industry production hall"
+                src={factoryPhotos.stamping.src}
+                alt={factoryPhotos.stamping.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="image-grade object-cover"
@@ -79,29 +81,29 @@ export default async function AboutPage({
         </div>
       </section>
 
+      <FacilityGallery dict={dict} />
+
       {/* History timeline */}
-      <section className="border-y border-hairline bg-surface">
-        <div className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-          <SectionHeading kicker={a.history.kicker} title={a.history.title} />
-          <ol className="mt-14 grid grid-cols-1 gap-px border border-hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
-            {a.history.milestones.map((m, i) => (
-              <Reveal key={m.year} delay={i * 0.07}>
-                <li className="relative h-full bg-surface p-7">
-                  <span className="font-display text-4xl font-bold text-ink">
-                    {m.year}
-                  </span>
-                  <span className="mt-4 block h-px w-10 bg-accent" />
-                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">
-                    {m.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-steel-700">
-                    {m.body}
-                  </p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
+      <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <SectionHeading kicker={a.history.kicker} title={a.history.title} />
+        <ol className="mt-14 grid grid-cols-1 gap-px border border-hairline bg-hairline md:grid-cols-2 lg:grid-cols-4">
+          {a.history.milestones.map((m, i) => (
+            <Reveal key={m.year} delay={i * 0.07}>
+              <li className="relative h-full bg-paper p-7">
+                <span className="font-display text-4xl font-bold text-ink">
+                  {m.year}
+                </span>
+                <span className="mt-4 block h-px w-10 bg-accent" />
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink">
+                  {m.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-steel-700">
+                  {m.body}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
       </section>
 
       {/* Leadership */}

@@ -7,6 +7,7 @@ import { Capabilities } from "@/components/home/Capabilities";
 import { Process } from "@/components/home/Process";
 import { StatsBand } from "@/components/home/StatsBand";
 import { CatalogPreview } from "@/components/home/CatalogPreview";
+import { FactoryFloor } from "@/components/home/FactoryFloor";
 import { PartnersMarquee } from "@/components/home/PartnersMarquee";
 import { CtaBand } from "@/components/home/CtaBand";
 
@@ -19,8 +20,8 @@ export default async function HomePage({
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
   const [products, partners] = await Promise.all([
-    loadFeaturedProducts(),
-    loadPartners(),
+    loadFeaturedProducts(locale),
+    loadPartners(locale),
   ]);
 
   return (
@@ -30,6 +31,7 @@ export default async function HomePage({
       <StatsBand dict={dict} />
       <CatalogPreview locale={locale} dict={dict} products={products} />
       <Process dict={dict} />
+      <FactoryFloor locale={locale} dict={dict} />
       <PartnersMarquee dict={dict} partners={partners} />
       <CtaBand locale={locale} dict={dict} />
     </>

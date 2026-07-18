@@ -24,8 +24,8 @@ export default async function CatalogPage({
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
   const [products, categories] = await Promise.all([
-    loadCatalogProducts(),
-    loadCatalogCategories(),
+    loadCatalogProducts(locale),
+    loadCatalogCategories(locale),
   ]);
 
   return (

@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { localePath } from "@/lib/nav";
+import { factoryPhotos } from "@/lib/factory";
 import { ButtonLink } from "@/components/ui/Button";
 import { BlueprintBackground } from "@/components/brand/BlueprintBackground";
 import { Reveal } from "@/components/ui/Reveal";
@@ -89,26 +90,26 @@ export function Hero({ locale, dict }: HeroProps) {
         <Reveal delay={0.1} className="relative">
           <div className="tech-frame relative aspect-[4/5] w-full border border-ink/10">
             <Image
-              src="https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1200&q=80"
-              alt="hanz Industry CNC machining floor"
+              src={factoryPhotos.muller.src}
+              alt={factoryPhotos.muller.alt}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
-              className="image-grade object-cover"
+              className="image-grade object-cover object-[center_20%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
 
-            {/* annotation chip */}
+            {/* annotation chip — ties the real press to production proof */}
             <div className="absolute bottom-4 left-4 flex items-center gap-3 bg-paper/95 px-4 py-3 backdrop-blur">
               <span className="grid h-8 w-8 place-items-center bg-accent font-mono text-[11px] font-bold text-paper">
                 01
               </span>
               <div className="leading-tight">
                 <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-steel-500">
-                  Tolerance
+                  {factoryPhotos.muller.detail}
                 </p>
                 <p className="font-display text-sm font-semibold text-ink">
-                  ±0.01 mm held
+                  {factoryPhotos.muller.caption}
                 </p>
               </div>
             </div>

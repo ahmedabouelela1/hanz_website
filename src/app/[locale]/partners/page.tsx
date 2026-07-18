@@ -26,7 +26,7 @@ export default async function PartnersPage({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
-  const partners = await loadPartners();
+  const partners = await loadPartners(locale);
 
   return (
     <>
@@ -38,42 +38,48 @@ export default async function PartnersPage({
       />
 
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
-        <div className="grid grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
-          {partners.map((partner, i) => (
-            <Reveal key={partner.slug} delay={i * 0.05}>
-              <article className="group flex h-full flex-col bg-surface-2 p-7 transition-colors hover:bg-surface">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] tracking-[0.14em] text-steel-400">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
-                    {partner.sector}
-                  </span>
-                </div>
-                {partner.logo ? (
-                  <div className="mt-7 flex h-14 w-fit items-center rounded-md bg-white px-3 py-2 ring-1 ring-hairline">
-                    {/* Plain img: logos come from many external hosts (incl. http),
-                        so we skip next/image host allowlisting for these. */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={partner.logo}
-                      alt={`${partner.name} logo`}
-                      loading="lazy"
-                      className="h-full w-auto max-w-[140px] object-contain"
-                    />
+        {partners.length === 0 ? (
+          <p className="py-20 text-center font-mono text-sm text-steel-500">
+            {dict.partners.empty}
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
+            {partners.map((partner, i) => (
+              <Reveal key={partner.slug} delay={i * 0.05}>
+                <article className="group flex h-full flex-col bg-surface-2 p-7 transition-colors hover:bg-surface">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] tracking-[0.14em] text-steel-400">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+                      {partner.sector}
+                    </span>
                   </div>
-                ) : null}
-                <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink">
-                  {partner.name}
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-steel-700">
-                  {partner.blurb}
-                </p>
-                <span className="mt-6 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 rtl:origin-right" />
-              </article>
-            </Reveal>
-          ))}
-        </div>
+                  {partner.logo ? (
+                    <div className="mt-7 flex h-14 w-fit items-center rounded-md bg-white px-3 py-2 ring-1 ring-hairline">
+                      {/* Plain img: logos come from many external hosts (incl. http),
+                          so we skip next/image host allowlisting for these. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        loading="lazy"
+                        className="h-full w-auto max-w-[140px] object-contain"
+                      />
+                    </div>
+                  ) : null}
+                  <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink">
+                    {partner.name}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-steel-700">
+                    {partner.blurb}
+                  </p>
+                  <span className="mt-6 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 rtl:origin-right" />
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* become a partner */}
