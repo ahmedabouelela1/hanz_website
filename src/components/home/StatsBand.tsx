@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import type { Dictionary } from "@/i18n/dictionaries";
 
-/** Parse values like "99.4%", "2.1M", "48h". Returns null for non-numeric (e.g. "ISO 9001"). */
+/** Parse values like "1986", "70%", "100–500t". Returns null for non-numeric. */
 function parseStat(value: string): {
   target: number;
   decimals: number;
