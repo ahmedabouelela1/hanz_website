@@ -30,7 +30,7 @@ export function CatalogCard({
           sizes="(max-width: 768px) 100vw, 33vw"
           className="image-grade object-cover transition-transform duration-700 group-hover:scale-[1.04]"
         />
-        <span className="absolute left-0 top-0 bg-ink px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-paper">
+        <span className="absolute left-0 top-0 bg-paper px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-ink">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>

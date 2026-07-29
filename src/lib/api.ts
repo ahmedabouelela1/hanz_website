@@ -1,19 +1,34 @@
 // Thin fetch wrapper for the hanz Laravel API.
-// Every call is best-effort: on any failure it returns null so the content
-// loaders can fall back to local seed data and the site still renders.
+// Every call is best-effort: on any failure the content loaders can fall back
+// to local seed data and the site still renders.
 
 import type { Locale } from "@/i18n/config";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function apiGet<T>(
+/** Give up on a hung backend rather than stalling the whole render. */
+const TIMEOUT_MS = 8000;
+
+/**
+ * Why a call didn't return data. The distinction matters for detail pages:
+ * `missing` is the API positively saying the record is gone (→ 404 the page),
+ * while `unavailable`/`disabled` mean we simply couldn't reach it (→ fall back
+ * to seed). Collapsing the two turned every backend hiccup into a 404.
+ */
+export type ApiFailure = "missing" | "unavailable" | "disabled";
+
+export type ApiResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; reason: ApiFailure };
+
+export async function apiFetch<T>(
   path: string,
   {
     revalidate = 300,
     locale,
   }: { revalidate?: number; locale?: Locale } = {},
-): Promise<T | null> {
-  if (!API_URL) return null;
+): Promise<ApiResult<T>> {
+  if (!API_URL) return { ok: false, reason: "disabled" };
   try {
     const url = new URL(`${API_URL}${path}`);
     if (locale) url.searchParams.set("locale", locale);
@@ -24,14 +39,35 @@ export async function apiGet<T>(
         ...(locale ? { "Accept-Language": locale } : {}),
       },
       next: { revalidate },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!res.ok) return null;
+
+    if (!res.ok) {
+      // Only a 404/410 is the API telling us the record doesn't exist. A 5xx,
+      // a rate limit, or a gateway error is the backend being unwell.
+      const gone = res.status === 404 || res.status === 410;
+      return { ok: false, reason: gone ? "missing" : "unavailable" };
+    }
+
     const json = (await res.json()) as { success?: boolean; data?: T };
-    if (json?.success === false) return null;
-    return (json?.data ?? (json as unknown as T)) ?? null;
+    if (json?.success === false) return { ok: false, reason: "missing" };
+
+    const data = (json?.data ?? (json as unknown as T)) ?? null;
+    if (data === null) return { ok: false, reason: "missing" };
+    return { ok: true, data: data as T };
   } catch {
-    return null;
+    // Network error, DNS failure, timeout, malformed JSON — all "can't reach".
+    return { ok: false, reason: "unavailable" };
   }
+}
+
+/** Convenience wrapper for list endpoints, where any failure means "use seed". */
+export async function apiGet<T>(
+  path: string,
+  options: { revalidate?: number; locale?: Locale } = {},
+): Promise<T | null> {
+  const res = await apiFetch<T>(path, options);
+  return res.ok ? res.data : null;
 }
 
 export interface InquiryPayload {

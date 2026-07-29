@@ -18,7 +18,7 @@ export function SubmitButton({
       type="submit"
       disabled={pending}
       className={cn(
-        "group inline-flex items-center justify-center gap-2.5 bg-ink px-8 py-4 font-mono text-[11px] uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent disabled:opacity-60",
+        "group inline-flex items-center justify-center gap-2.5 bg-paper px-8 py-4 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:bg-accent disabled:opacity-60",
         className,
       )}
     >

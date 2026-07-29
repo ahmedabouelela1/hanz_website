@@ -28,7 +28,7 @@ export function NewsletterForm({ placeholder, cta }: NewsletterFormProps) {
         placeholder={done ? "✓" : placeholder}
         disabled={done}
         className={cn(
-          "w-full bg-transparent py-2.5 font-mono text-sm text-paper placeholder:text-steel-500 focus:outline-none",
+          "w-full bg-transparent py-2.5 font-mono text-sm text-ink placeholder:text-steel-500 focus:outline-none",
           done && "text-accent",
         )}
       />

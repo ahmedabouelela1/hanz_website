@@ -5,7 +5,6 @@ type Variant =
   | "solid"
   | "outline"
   | "ghost"
-  /** For dark surfaces (hero over photography, ink bands). */
   | "solid-invert"
   | "outline-invert";
 

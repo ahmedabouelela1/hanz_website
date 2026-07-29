@@ -113,7 +113,7 @@ export default async function AboutPage({
           {a.leadership.members.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.07}>
               <article className="group border border-hairline bg-surface-2 p-7 transition-colors hover:border-ink">
-                <div className="flex h-16 w-16 items-center justify-center bg-ink font-display text-xl font-bold text-paper transition-colors group-hover:bg-accent">
+                <div className="flex h-16 w-16 items-center justify-center bg-paper font-display text-xl font-bold text-ink transition-colors group-hover:bg-accent">
                   {m.name
                     .split(" ")
                     .map((w) => w[0])

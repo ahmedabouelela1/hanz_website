@@ -3,7 +3,6 @@
 /* ============================================================
    HANZ INDUSTRY — Light Industrial Minimal design system
    Concrete/steel neutrals · a single molten-orange signal accent
-   Blueprint grid + technical hairline motifs
    ============================================================ */
 
 :root {
@@ -34,6 +33,10 @@
 
   --background: var(--paper);
   --foreground: var(--ink);
+
+  /* Spacing scale */
+  --space-section: clamp(6rem, 12vh, 10rem);
+  --space-section-sm: clamp(4rem, 8vh, 6rem);
 }
 
 @theme inline {
@@ -80,6 +83,7 @@ body {
   font-feature-settings: "ss01", "cv01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 /* Arabic locale swaps the sans stack to a proper Arabic face */
@@ -123,7 +127,6 @@ html[lang="ar"] .font-display {
     linear-gradient(to bottom, var(--blueprint) 1px, transparent 1px);
   background-size: 64px 64px;
 }
-/* Same grid inverted, for dark photographic surfaces (home hero) */
 .blueprint-grid-invert {
   background-image:
     linear-gradient(to right, rgba(240, 238, 232, 0.07) 1px, transparent 1px),
@@ -198,10 +201,13 @@ html[lang="ar"] .font-display {
   }
 }
 .animate-marquee {
-  animation: marquee 38s linear infinite;
+  animation: marquee 45s linear infinite;
 }
 html[dir="rtl"] .animate-marquee {
   animation-direction: reverse;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Underline sweep for links */
@@ -217,4 +223,37 @@ html[dir="rtl"] .animate-marquee {
 }
 html[dir="rtl"] .link-underline {
   background-position: 100% 100%;
+}
+
+/* ---- Grain texture overlay ---- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* ---- Horizontal scroll section ---- */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ---- Magnetic button base ---- */
+.magnetic-btn {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

@@ -17,7 +17,6 @@ export function Footer({ locale, dict }: FooterProps) {
   return (
     <footer className="relative bg-ink text-paper">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-        {/* top: oversized wordmark + newsletter */}
         <div className="grid gap-12 border-b border-steel-900 py-16 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
           <div>
             <p className="kicker mb-6 text-steel-500">{dict.brand.tagline}</p>
@@ -37,7 +36,6 @@ export function Footer({ locale, dict }: FooterProps) {
           </div>
         </div>
 
-        {/* link columns */}
         <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="kicker mb-5 text-steel-500">{dict.footer.explore}</p>
@@ -107,7 +105,6 @@ export function Footer({ locale, dict }: FooterProps) {
           </div>
         </div>
 
-        {/* bottom bar */}
         <div className="flex flex-col items-center justify-between gap-3 border-t border-steel-900 py-7 font-mono text-[11px] tracking-[0.1em] text-steel-500 sm:flex-row">
           <span>
             © {year} {siteMeta.name}. {dict.footer.rights}

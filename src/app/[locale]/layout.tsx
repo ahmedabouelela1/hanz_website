@@ -17,6 +17,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { siteUrl, siteMeta } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Preloader } from "@/components/layout/Preloader";
 import { SideToolbar } from "@/components/layout/SideToolbar";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 
@@ -100,6 +101,7 @@ export default async function LocaleLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrains.variable} ${plexArabic.variable} h-full`}
     >
       <body className="flex min-h-full flex-col font-sans antialiased">
+        <Preloader />
         <OrganizationJsonLd tagline={dict.brand.tagline} />
         <Header locale={typedLocale} dict={dict} />
         <main className="flex-1">{children}</main>

@@ -34,10 +34,10 @@ export function FacilityGallery({ dict }: FacilityGalleryProps) {
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-ink/75 via-ink/30 to-transparent px-5 pb-5 pt-20">
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/70">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/70">
                     {featured.detail}
                   </p>
-                  <p className="mt-1 font-display text-lg font-semibold text-paper">
+                  <p className="mt-1 font-display text-lg font-semibold text-ink">
                     {featured.caption}
                   </p>
                 </div>
@@ -60,10 +60,10 @@ export function FacilityGallery({ dict }: FacilityGalleryProps) {
                     className="image-grade object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
                   <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent px-4 pb-4 pt-14">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/70">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/70">
                       {photo.detail}
                     </p>
-                    <p className="mt-0.5 font-display text-sm font-semibold text-paper">
+                    <p className="mt-0.5 font-display text-sm font-semibold text-ink">
                       {photo.caption}
                     </p>
                   </figcaption>
@@ -88,10 +88,10 @@ export function FacilityGallery({ dict }: FacilityGalleryProps) {
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-ink/70 to-transparent px-4 pb-4 pt-14">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/70">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/70">
                       {photo.detail}
                     </p>
-                    <p className="mt-0.5 font-display text-sm font-semibold text-paper">
+                    <p className="mt-0.5 font-display text-sm font-semibold text-ink">
                       {photo.caption}
                     </p>
                   </div>
@@ -119,10 +119,10 @@ export function FacilityGallery({ dict }: FacilityGalleryProps) {
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-ink/70 to-transparent px-5 pb-4 pt-16">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/70">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/70">
                       {photo.detail}
                     </p>
-                    <p className="mt-0.5 font-display text-base font-semibold text-paper">
+                    <p className="mt-0.5 font-display text-base font-semibold text-ink">
                       {photo.caption}
                     </p>
                   </div>

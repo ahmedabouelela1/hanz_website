@@ -45,7 +45,7 @@ export function CatalogBrowser({
               className={cn(
                 "border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors",
                 isActive
-                  ? "border-ink bg-ink text-paper"
+                  ? "border-ink bg-paper text-ink"
                   : "border-hairline text-steel-700 hover:border-ink hover:text-ink",
               )}
             >

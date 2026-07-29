@@ -17,15 +17,7 @@ interface HeaderProps {
 
 export function Header({ locale, dict }: HeaderProps) {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -37,19 +29,8 @@ export function Header({ locale, dict }: HeaderProps) {
 
   const isActive = (href: string) => pathname === localePath(locale, href);
 
-  // The home hero is a full-bleed dark photograph, so the transparent header
-  // has to sit on it light-on-dark until the user scrolls past it.
-  const onDark = pathname === localePath(locale, "/") && !scrolled && !open;
-
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || open
-          ? "border-b border-hairline bg-paper/90 backdrop-blur-md"
-          : "border-b border-transparent",
-      )}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-paper">
       <div className="mx-auto flex h-[68px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[76px] lg:px-12">
         <Logo locale={locale} onNavigate={() => setOpen(false)} />
 
@@ -61,12 +42,8 @@ export function Header({ locale, dict }: HeaderProps) {
               className={cn(
                 "link-underline font-mono text-[11px] uppercase tracking-[0.14em] transition-colors",
                 isActive(route.href)
-                  ? onDark
-                    ? "text-accent-hot"
-                    : "text-accent"
-                  : onDark
-                    ? "text-paper/70 hover:text-paper"
-                    : "text-steel-700 hover:text-ink",
+                  ? "text-accent"
+                  : "text-steel-700 hover:text-ink",
               )}
             >
               {dict.nav[route.key as keyof typeof dict.nav]}
@@ -75,15 +52,10 @@ export function Header({ locale, dict }: HeaderProps) {
         </nav>
 
         <div className="hidden items-center gap-6 lg:flex">
-          <LocaleSwitcher current={locale} onDark={onDark} />
+          <LocaleSwitcher current={locale} />
           <Link
             href={localePath(locale, "/quote")}
-            className={cn(
-              "group inline-flex items-center gap-2 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors",
-              onDark
-                ? "bg-paper text-ink hover:bg-accent hover:text-paper"
-                : "bg-ink text-paper hover:bg-accent",
-            )}
+            className="group inline-flex items-center gap-2 bg-ink px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-paper transition-colors hover:bg-accent"
           >
             {dict.nav.quote}
             <span className="transition-transform group-hover:translate-x-0.5 rtl:rotate-180">
@@ -92,7 +64,6 @@ export function Header({ locale, dict }: HeaderProps) {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -103,22 +74,19 @@ export function Header({ locale, dict }: HeaderProps) {
           <span className="flex flex-col gap-1.5">
             <span
               className={cn(
-                "h-px w-6 transition-all duration-300",
-                onDark ? "bg-paper" : "bg-ink",
+                "h-px w-6 bg-ink transition-all duration-300",
                 open && "translate-y-[7px] rotate-45",
               )}
             />
             <span
               className={cn(
-                "h-px w-6 transition-all duration-300",
-                onDark ? "bg-paper" : "bg-ink",
+                "h-px w-6 bg-ink transition-all duration-300",
                 open && "opacity-0",
               )}
             />
             <span
               className={cn(
-                "h-px w-6 transition-all duration-300",
-                onDark ? "bg-paper" : "bg-ink",
+                "h-px w-6 bg-ink transition-all duration-300",
                 open && "-translate-y-[7px] -rotate-45",
               )}
             />
@@ -126,7 +94,6 @@ export function Header({ locale, dict }: HeaderProps) {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={cn(
           "overflow-hidden border-t border-hairline bg-paper lg:hidden",

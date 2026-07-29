@@ -2,7 +2,7 @@
   "brand": {
     "name": "hanz",
     "suffix": "Industry",
-    "tagline": "Engineered to endure."
+    "tagline": "We make the parts."
   },
   "nav": {
     "home": "Home",
@@ -15,6 +15,15 @@
     "menu": "Menu",
     "close": "Close",
     "quoteShort": "Quote"
+  },
+  "sideNav": {
+    "label": "Section shortcuts",
+    "capabilities": "Capabilities",
+    "catalog": "Products",
+    "process": "Process",
+    "factory": "Factory",
+    "partners": "Partners",
+    "cta": "Get a Quote"
   },
   "cta": {
     "requestQuote": "Request a quote",
@@ -45,20 +54,20 @@
         "title": "Industries we serve",
         "items": [
           {
-            "label": "High Quality",
-            "note": "ISO 9001 controlled process"
+            "label": "Construction",
+            "note": "Structural hardware & facades"
           },
           {
-            "label": "Precision Engineering",
-            "note": "Tolerances held to ±0.05 mm"
+            "label": "Automotive",
+            "note": "Chassis & powertrain castings"
           },
           {
-            "label": "Advanced Technology",
-            "note": "CNC and automated die casting"
+            "label": "Commercial Vehicles",
+            "note": "Heavy-duty assemblies"
           },
           {
-            "label": "Reliable Partner",
-            "note": "26 years, 12 export markets"
+            "label": "Heavy Equipment",
+            "note": "Hydraulic & drivetrain parts"
           }
         ]
       },
@@ -71,9 +80,9 @@
       ]
     },
     "capabilities": {
-      "kicker": "Capabilities",
-      "title": "A full-stack industrial partner",
-      "lead": "From raw stock to finished, inspected assemblies — engineered under one roof.",
+      "kicker": "What we do",
+      "title": "Everything between raw aluminum and a boxed part.",
+      "lead": "We don't outsource steps. One roof, one quality system, your part done right.",
       "items": [
         {
           "no": "01",
@@ -133,12 +142,23 @@
       "title": "Standardized product lines",
       "lead": "Proven, in-stock components — ready to configure for your specification."
     },
+    "productShowcase": {
+      "kicker": "Catalog",
+      "title": "Products",
+      "lead": "Pick a line. Every part is configurable to your material, tolerance, and finish.",
+      "empty": "No products in this line yet.",
+      "prev": "Previous product",
+      "next": "Next product",
+      "select": "Show {title}",
+      "viewProduct": "View product",
+      "viewAll": "View full catalog"
+    },
     "partners": {
-      "kicker": "Trusted by",
-      "title": "Partners who build with us"
+      "kicker": "Clients",
+      "title": "Who we make parts for"
     },
     "stats": {
-      "title": "Built on measurable outcomes",
+      "title": "The numbers behind the work.",
       "items": [
         {
           "value": "99.4%",
@@ -159,15 +179,15 @@
       ]
     },
     "factory": {
-      "kicker": "The floor",
-      "title": "Real machines. Real throughput.",
-      "lead": "A look inside our production halls — die-casting cells, melt bays, and forming presses running under one quality system.",
+      "kicker": "Inside",
+      "title": "This is what 40,000 m² of production looks like.",
+      "lead": "Die-casting cells, melt bays, forming presses. Not renders — photographs from our floor this month.",
       "cta": "Tour the plant"
     },
     "ctaBand": {
-      "kicker": "Start a project",
-      "title": "Have a drawing? Let's put it into production.",
-      "lead": "Send us your specification and receive an engineered quotation within two working days."
+      "kicker": "Ready?",
+      "title": "You send the drawing. We ship the parts.",
+      "lead": "Quotation back in 48 hours. No sales decks, no fluff — just the numbers."
     }
   },
   "about": {

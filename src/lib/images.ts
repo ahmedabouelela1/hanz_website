@@ -1,3 +1,5 @@
+import { isAllowedImageSrc } from "./imageHosts";
+
 /** Verified stock photography URLs — all return HTTP 200 from Unsplash. */
 export const stockImages = {
   cnc: "https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1400&q=80",
@@ -26,6 +28,11 @@ export function normalizeImageUrl(url: string | null | undefined): string {
   for (const [retiredId, replacement] of Object.entries(retiredPhotoIds)) {
     if (trimmed.includes(retiredId)) return stockImages[replacement];
   }
+
+  // A host next/image isn't configured for makes <Image> throw at render and
+  // takes the page down with it. CMS editors can supply any URL, so degrade to
+  // the placeholder instead of trusting the input.
+  if (!isAllowedImageSrc(trimmed)) return fallbackImage;
 
   return trimmed;
 }

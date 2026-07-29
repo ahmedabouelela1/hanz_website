@@ -48,7 +48,7 @@ export default async function PartnersPage({
               <Reveal key={partner.slug} delay={i * 0.05}>
                 <article className="group flex h-full flex-col bg-surface-2 p-7 transition-colors hover:bg-surface">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] tracking-[0.14em] text-steel-400">
+                    <span className="font-mono text-[11px] tracking-[0.14em] text-steel-500">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">

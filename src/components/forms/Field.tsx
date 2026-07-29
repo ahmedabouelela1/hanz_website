@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 const fieldClass =
-  "w-full border-b border-hairline bg-transparent py-3 font-sans text-ink placeholder:text-steel-400 focus:border-accent focus:outline-none transition-colors";
+  "w-full border-b border-hairline bg-transparent py-3 font-sans text-ink placeholder:text-steel-500 focus:border-accent focus:outline-none transition-colors";
 
 interface BaseProps {
   name: string;

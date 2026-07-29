@@ -28,7 +28,7 @@ export default function LocaleError({
       <button
         type="button"
         onClick={reset}
-        className="mt-8 bg-ink px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-paper transition-colors hover:bg-accent"
+        className="mt-8 bg-paper px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:bg-accent"
       >
         Try again
       </button>

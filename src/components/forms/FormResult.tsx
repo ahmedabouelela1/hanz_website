@@ -18,7 +18,7 @@ export function FormResult({
     >
       <span
         className={cn(
-          "mt-0.5 grid h-6 w-6 shrink-0 place-items-center font-mono text-xs font-bold text-paper",
+          "mt-0.5 grid h-6 w-6 shrink-0 place-items-center font-mono text-xs font-bold text-ink",
           success ? "bg-accent" : "bg-red-500",
         )}
       >

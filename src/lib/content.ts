@@ -18,7 +18,7 @@ import {
   localizeProducts,
 } from "@/data/seed.ar";
 import { normalizeImageList, normalizeImageUrl } from "./images";
-import { apiGet } from "./api";
+import { apiFetch, apiGet } from "./api";
 import { cache } from "react";
 
 function normalizeProduct(product: Partial<CatalogProduct>): CatalogProduct {
@@ -118,17 +118,15 @@ export const loadFeaturedProducts = cache(
 
 export const loadProductBySlug = cache(
   async (slug: string, locale: Locale = "en"): Promise<CatalogProduct | null> => {
-    const remote = await apiGet<CatalogProduct>(`/catalog/products/${encodeURIComponent(slug)}`, {
-      locale,
-    });
-    if (remote !== null) return normalizeProduct(remote);
+    const remote = await apiFetch<CatalogProduct>(
+      `/catalog/products/${encodeURIComponent(slug)}`,
+      { locale },
+    );
+    if (remote.ok) return normalizeProduct(remote.data);
 
-    // Detail endpoint miss: only fall back to seed when the API is unreachable
-    // (no URL / network). If the API is up, a 404 means the product is gone.
-    if (process.env.NEXT_PUBLIC_API_URL) {
-      const list = await apiGet<CatalogProduct[]>("/catalog/products", { locale });
-      if (list !== null) return null;
-    }
+    // Only a positive "not found" from a healthy API means the product is gone.
+    // A timeout or 5xx must not 404 a page that exists.
+    if (remote.reason === "missing") return null;
 
     const seed = catalogProducts.map(normalizeProduct);
     const localized = locale === "ar" ? localizeProducts(seed) : seed;
@@ -175,13 +173,14 @@ export const loadFeaturedNews = cache(
 
 export const loadNewsBySlug = cache(
   async (slug: string, locale: Locale = "en"): Promise<NewsArticle | null> => {
-    const remote = await apiGet<NewsArticle>(`/news/${encodeURIComponent(slug)}`, { locale });
-    if (remote !== null) return normalizeNews(remote);
+    const remote = await apiFetch<NewsArticle>(`/news/${encodeURIComponent(slug)}`, {
+      locale,
+    });
+    if (remote.ok) return normalizeNews(remote.data);
 
-    if (process.env.NEXT_PUBLIC_API_URL) {
-      const list = await apiGet<NewsArticle[]>("/news", { locale });
-      if (list !== null) return null;
-    }
+    // Same rule as products: a backend blip must not turn a live article into
+    // a 404 that ISR then caches for the whole revalidate window.
+    if (remote.reason === "missing") return null;
 
     const seed = newsArticles.map(normalizeNews);
     const localized = locale === "ar" ? localizeNewsAr(seed) : seed;
