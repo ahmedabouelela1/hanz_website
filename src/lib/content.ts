@@ -11,6 +11,12 @@ import {
   newsArticles,
   partners,
 } from "@/data/seed";
+import {
+  localizeCategories,
+  localizeNews as localizeNewsAr,
+  localizePartners,
+  localizeProducts,
+} from "@/data/seed.ar";
 import { normalizeImageList, normalizeImageUrl } from "./images";
 import { apiGet } from "./api";
 import { cache } from "react";
@@ -81,13 +87,15 @@ function normalizeCategory(category: Partial<CatalogCategory>): CatalogCategory 
 // local seed data only when the fetch fails (null), so an intentional empty
 // CMS list stays empty. Wrapped in React cache() — keyed by locale.
 //
-// Seed is English-only offline stub; with the API up, ?locale= drives bilingual fields.
+// The offline seed is authored in English; data/seed.ar.ts overlays Arabic by
+// slug for the ar locale. With the API up, ?locale= drives bilingual fields.
 
 export const loadCatalogCategories = cache(
   async (locale: Locale = "en"): Promise<CatalogCategory[]> => {
     const remote = await apiGet<CatalogCategory[]>("/catalog/categories", { locale });
     if (remote !== null) return remote.map(normalizeCategory);
-    return catalogCategories.map(normalizeCategory);
+    const seed = catalogCategories.map(normalizeCategory);
+    return locale === "ar" ? localizeCategories(seed) : seed;
   },
 );
 
@@ -95,7 +103,8 @@ export const loadCatalogProducts = cache(
   async (locale: Locale = "en"): Promise<CatalogProduct[]> => {
     const remote = await apiGet<CatalogProduct[]>("/catalog/products", { locale });
     if (remote !== null) return remote.map(normalizeProduct);
-    return catalogProducts.map(normalizeProduct);
+    const seed = catalogProducts.map(normalizeProduct);
+    return locale === "ar" ? localizeProducts(seed) : seed;
   },
 );
 
@@ -121,16 +130,17 @@ export const loadProductBySlug = cache(
       if (list !== null) return null;
     }
 
-    return (
-      catalogProducts.map(normalizeProduct).find((p) => p.slug === slug) ?? null
-    );
+    const seed = catalogProducts.map(normalizeProduct);
+    const localized = locale === "ar" ? localizeProducts(seed) : seed;
+    return localized.find((p) => p.slug === slug) ?? null;
   },
 );
 
 export const loadPartners = cache(async (locale: Locale = "en"): Promise<Partner[]> => {
   const remote = await apiGet<Partner[]>("/partners", { locale });
   if (remote !== null) return remote.map(normalizePartner);
-  return partners.map(normalizePartner);
+  const seed = partners.map(normalizePartner);
+  return locale === "ar" ? localizePartners(seed) : seed;
 });
 
 export const loadFeaturedPartners = cache(
@@ -143,8 +153,13 @@ export const loadFeaturedPartners = cache(
 
 export const loadNews = cache(async (locale: Locale = "en"): Promise<NewsArticle[]> => {
   const remote = await apiGet<NewsArticle[]>("/news", { locale });
+  const seed = newsArticles.map(normalizeNews);
   const list =
-    remote !== null ? remote.map(normalizeNews) : newsArticles.map(normalizeNews);
+    remote !== null
+      ? remote.map(normalizeNews)
+      : locale === "ar"
+        ? localizeNewsAr(seed)
+        : seed;
   return [...list].sort((a, b) =>
     (b.publishedAt || "").localeCompare(a.publishedAt || ""),
   );
@@ -168,6 +183,8 @@ export const loadNewsBySlug = cache(
       if (list !== null) return null;
     }
 
-    return newsArticles.map(normalizeNews).find((n) => n.slug === slug) ?? null;
+    const seed = newsArticles.map(normalizeNews);
+    const localized = locale === "ar" ? localizeNewsAr(seed) : seed;
+    return localized.find((n) => n.slug === slug) ?? null;
   },
 );

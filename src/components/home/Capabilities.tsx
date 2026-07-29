@@ -1,28 +1,45 @@
 import type { Dictionary } from "@/i18n/dictionaries";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Capabilities({ dict }: { dict: Dictionary }) {
   const c = dict.home.capabilities;
   return (
     <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-      <SectionHeading kicker={c.kicker} title={c.title} lead={c.lead} />
+      <div>
+        <Kicker className="mb-5">{c.kicker}</Kicker>
+        <h2 className="font-display text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-ink text-balance">
+          {c.title}
+        </h2>
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-steel-700">
+          {c.lead}
+        </p>
+      </div>
 
-      <div className="mt-14 grid grid-cols-1 gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2">
         {c.items.map((item, i) => (
-          <Reveal key={item.no} delay={i * 0.06}>
-            <article className="group relative flex h-full flex-col bg-paper p-7 transition-colors duration-300 hover:bg-surface-2">
-              <span className="font-mono text-[11px] tracking-[0.14em] text-steel-400">
-                {item.no}
-              </span>
-              <span className="mt-6 block h-8 w-8 border border-ink/20 transition-colors duration-300 group-hover:border-accent group-hover:bg-accent/5" />
+          <Reveal key={item.no} delay={i * 0.07}>
+            <article
+              className={`group relative flex flex-col border border-hairline p-8 transition-all duration-500 hover:border-ink/30 hover:shadow-[0_2px_24px_-4px_rgba(0,0,0,0.08)] ${
+                i % 2 === 1 ? "sm:translate-y-8" : ""
+              }`}
+            >
+              <div className="flex items-center gap-4">
+                <span className="font-display text-[3.5rem] font-bold leading-none text-hairline transition-colors duration-500 group-hover:text-accent/20">
+                  {item.no}
+                </span>
+                <span className="h-px flex-1 bg-hairline transition-colors duration-500 group-hover:bg-accent/30" />
+              </div>
               <h3 className="mt-6 font-display text-xl font-semibold text-ink">
                 {item.title}
               </h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-steel-700">
                 {item.body}
               </p>
-              <span className="mt-6 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100 rtl:origin-right" />
+              <span
+                aria-hidden
+                className="absolute bottom-0 end-0 h-0 w-0 border-b-[3px] border-e-[3px] border-transparent transition-all duration-500 group-hover:h-6 group-hover:w-6 group-hover:border-accent"
+              />
             </article>
           </Reveal>
         ))}

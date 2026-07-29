@@ -26,7 +26,7 @@ export default async function ContactPage({
   const c = dict.contact;
 
   const infoRows = [
-    { label: c.info.addressLabel, value: siteContact.address },
+    { label: c.info.addressLabel, value: c.info.addressValue },
     {
       label: c.info.phoneLabel,
       value: siteContact.phone,
@@ -46,7 +46,7 @@ export default async function ContactPage({
         kicker={c.hero.kicker}
         title={c.hero.title}
         lead={c.hero.lead}
-        index="06 — Contact"
+        index={`06 — ${dict.nav.contact}`}
       />
 
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
@@ -78,7 +78,7 @@ export default async function ContactPage({
             <div className="mt-8 flex items-center gap-2 border border-hairline px-4 py-3">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-steel-500">
-                ISO 9001 · Certified Manufacturer
+                {dict.contact.badge}
               </span>
             </div>
           </div>

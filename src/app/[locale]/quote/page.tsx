@@ -36,7 +36,7 @@ export default async function QuotePage({
         kicker={dict.quote.hero.kicker}
         title={dict.quote.hero.title}
         lead={dict.quote.hero.lead}
-        index="07 — Quote"
+        index={`07 — ${dict.nav.quoteShort}`}
       />
 
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">

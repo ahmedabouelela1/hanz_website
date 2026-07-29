@@ -13,7 +13,8 @@
     "contact": "Contact",
     "quote": "Request a Quote",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "quoteShort": "Quote"
   },
   "cta": {
     "requestQuote": "Request a quote",
@@ -29,16 +30,45 @@
   "home": {
     "hero": {
       "kicker": "Precision manufacturing · Est. 1998",
-      "titleLine1": "We build the",
-      "titleAccent": "components",
-      "titleLine2": "industry runs on.",
-      "lead": "hanz Industry engineers and manufactures precision metal components and industrial assemblies for partners across construction, energy, and heavy equipment.",
+      "titleLine1": "Your trusted aluminum",
+      "titleAccent": "die casting",
+      "titleLine2": "partner.",
+      "lead": "hanz Industry engineers and manufactures precision metal components and industrial assemblies for partners across construction, commercial vehicles, automotive, and heavy equipment.",
       "stat1Value": "26+",
       "stat1Label": "Years in production",
       "stat2Value": "40k m²",
       "stat2Label": "Manufacturing floor",
       "stat3Value": "12",
-      "stat3Label": "Export markets"
+      "stat3Label": "Export markets",
+      "live": "Live",
+      "pillars": {
+        "title": "Industries we serve",
+        "items": [
+          {
+            "label": "High Quality",
+            "note": "ISO 9001 controlled process"
+          },
+          {
+            "label": "Precision Engineering",
+            "note": "Tolerances held to ±0.05 mm"
+          },
+          {
+            "label": "Advanced Technology",
+            "note": "CNC and automated die casting"
+          },
+          {
+            "label": "Reliable Partner",
+            "note": "26 years, 12 export markets"
+          }
+        ]
+      },
+      "ribbon": [
+        "CNC Machining",
+        "Metal Fabrication",
+        "Surface Treatment",
+        "Assembly & QA",
+        "ISO 9001 Certified"
+      ]
     },
     "capabilities": {
       "kicker": "Capabilities",
@@ -71,10 +101,31 @@
       "kicker": "How we work",
       "title": "From brief to delivery",
       "steps": [
-        { "no": "01", "title": "Consult & engineer", "body": "We review specs, DFM, and tolerances with your team before a single cut." },
-        { "no": "02", "title": "Prototype & validate", "body": "Rapid first-article samples, inspected and signed off against your drawings." },
-        { "no": "03", "title": "Produce at scale", "body": "Batch production on scheduled lines with live quality gates at each stage." },
-        { "no": "04", "title": "Inspect & ship", "body": "Final CMM inspection, certification, and logistics to your dock — on time." }
+        {
+          "no": "01",
+          "title": "Analyze raw material",
+          "body": "We spectrograph-test every alloy batch — verifying chemical composition, purity, and mechanical properties before it enters the furnace."
+        },
+        {
+          "no": "02",
+          "title": "Plan the manufacturing",
+          "body": "Our engineering team selects the right die-casting machines, designs the tooling, and maps the full process route for your part."
+        },
+        {
+          "no": "03",
+          "title": "Inject the aluminum",
+          "body": "Molten aluminum is shot into precision dies under high pressure — filling complex geometries in milliseconds with repeatable accuracy."
+        },
+        {
+          "no": "04",
+          "title": "Produce at scale",
+          "body": "Automated die-casting cells run production batches with live quality gates, cycle-time tracking, and zero-defect targets."
+        },
+        {
+          "no": "05",
+          "title": "QC / QA & ship",
+          "body": "Every part is CMM-inspected, X-ray sampled, and certified before packing and logistics to your dock — on time."
+        }
       ]
     },
     "catalogPreview": {
@@ -89,16 +140,28 @@
     "stats": {
       "title": "Built on measurable outcomes",
       "items": [
-        { "value": "99.4%", "label": "On-spec delivery rate" },
-        { "value": "2.1M", "label": "Parts shipped annually" },
-        { "value": "48h", "label": "Average quote turnaround" },
-        { "value": "ISO 9001", "label": "Certified quality system" }
+        {
+          "value": "99.4%",
+          "label": "On-spec delivery rate"
+        },
+        {
+          "value": "2.1M",
+          "label": "Parts shipped annually"
+        },
+        {
+          "value": "48h",
+          "label": "Average quote turnaround"
+        },
+        {
+          "value": "ISO 9001",
+          "label": "Certified quality system"
+        }
       ]
     },
     "factory": {
       "kicker": "The floor",
       "title": "Real machines. Real throughput.",
-      "lead": "A look inside our production halls — hydraulic presses, die-casting cells, and stamping bays running under one quality system.",
+      "lead": "A look inside our production halls — die-casting cells, melt bays, and forming presses running under one quality system.",
       "cta": "Tour the plant"
     },
     "ctaBand": {
@@ -127,28 +190,68 @@
       "kicker": "History",
       "title": "The hanz timeline",
       "milestones": [
-        { "year": "1998", "title": "Founded", "body": "hanz opens a three-machine shop serving local fabricators." },
-        { "year": "2006", "title": "First export", "body": "Precision components ship to European heavy-equipment OEMs." },
-        { "year": "2014", "title": "ISO 9001", "body": "Full quality-management certification and in-house metrology lab." },
-        { "year": "2021", "title": "40k m² plant", "body": "New automated production hall doubles output capacity." }
+        {
+          "year": "1998",
+          "title": "Founded",
+          "body": "hanz opens a three-machine shop serving local fabricators."
+        },
+        {
+          "year": "2006",
+          "title": "First export",
+          "body": "Precision components ship to European heavy-equipment OEMs."
+        },
+        {
+          "year": "2014",
+          "title": "ISO 9001",
+          "body": "Full quality-management certification and in-house metrology lab."
+        },
+        {
+          "year": "2021",
+          "title": "40k m² plant",
+          "body": "New automated production hall doubles output capacity."
+        }
       ]
     },
     "leadership": {
       "kicker": "Leadership",
       "title": "The people behind the precision",
       "members": [
-        { "name": "Hanz Al-Rashid", "role": "Founder & Chairman", "bio": "Set the tolerance-first culture that still defines the floor." },
-        { "name": "Nour Adel", "role": "Chief Operations Officer", "bio": "Runs a lean, gated production system across every line." },
-        { "name": "Karim Fathy", "role": "Head of Engineering", "bio": "Leads DFM and metrology from brief to first article." }
+        {
+          "name": "Hanz Al-Rashid",
+          "role": "Founder & Chairman",
+          "bio": "Set the tolerance-first culture that still defines the floor."
+        },
+        {
+          "name": "Nour Adel",
+          "role": "Chief Operations Officer",
+          "bio": "Runs a lean, gated production system across every line."
+        },
+        {
+          "name": "Karim Fathy",
+          "role": "Head of Engineering",
+          "bio": "Leads DFM and metrology from brief to first article."
+        }
       ]
     },
     "values": {
       "kicker": "What we stand for",
       "title": "Principles on the floor",
       "items": [
-        { "no": "01", "title": "Measure everything", "body": "If it isn't measured, it isn't manufactured." },
-        { "no": "02", "title": "Own the outcome", "body": "We stand behind every part that leaves the plant." },
-        { "no": "03", "title": "Engineer for life", "body": "We design for fatigue, corrosion, and the long run." }
+        {
+          "no": "01",
+          "title": "Measure everything",
+          "body": "If it isn't measured, it isn't manufactured."
+        },
+        {
+          "no": "02",
+          "title": "Own the outcome",
+          "body": "We stand behind every part that leaves the plant."
+        },
+        {
+          "no": "03",
+          "title": "Engineer for life",
+          "body": "We design for fatigue, corrosion, and the long run."
+        }
       ]
     }
   },
@@ -158,8 +261,13 @@
       "title": "Standardized component lines",
       "lead": "Browse our proven product families. Every line is configurable to your material, tolerance, and finish."
     },
-    "filters": { "all": "All categories" },
-    "card": { "spec": "Specification", "from": "Configurable" },
+    "filters": {
+      "all": "All categories"
+    },
+    "card": {
+      "spec": "Specification",
+      "from": "Configurable"
+    },
     "detail": {
       "specsTitle": "Technical specification",
       "applicationsTitle": "Applications",
@@ -201,7 +309,8 @@
       "phoneLabel": "Phone",
       "emailLabel": "Email",
       "hoursLabel": "Working hours",
-      "hoursValue": "Sun–Thu · 08:00–18:00"
+      "hoursValue": "Sun–Thu · 08:00–18:00",
+      "addressValue": "Industrial Zone, Plot 24, 6th of October City, Giza, Egypt"
     },
     "form": {
       "title": "Send a message",
@@ -215,7 +324,8 @@
       "error": "Something went wrong. Please try again or email us directly.",
       "required": "This field is required.",
       "invalidEmail": "Enter a valid email address."
-    }
+    },
+    "badge": "ISO 9001 · Certified Manufacturer"
   },
   "quote": {
     "hero": {
@@ -232,7 +342,13 @@
       "phone": "Phone",
       "service": "Service required",
       "servicePlaceholder": "Select a capability",
-      "services": ["CNC Machining", "Metal Fabrication", "Surface Treatment", "Assembly", "Other"],
+      "services": [
+        "CNC Machining",
+        "Metal Fabrication",
+        "Surface Treatment",
+        "Assembly",
+        "Other"
+      ],
       "quantity": "Estimated quantity",
       "material": "Material",
       "deadline": "Target date",
@@ -253,11 +369,54 @@
     "newsletterPlaceholder": "Work email",
     "subscribe": "Subscribe",
     "rights": "All rights reserved.",
-    "builtBy": "Built by Clybrid"
+    "builtBy": "Built by Clybrid",
+    "certified": "ISO 9001 · Certified"
   },
   "notFound": {
     "title": "Off the blueprint.",
     "lead": "This page doesn't exist — or it's been retooled. Let's get you back on the line.",
     "home": "Back to home"
+  },
+  "factory": {
+    "muller": {
+      "caption": "Hydraulic press",
+      "detail": "Müller · Floor A"
+    },
+    "productionLine": {
+      "caption": "Die casting",
+      "detail": "Italpresse cell"
+    },
+    "heavyMachinery": {
+      "caption": "Heavy forming",
+      "detail": "Press bay"
+    },
+    "stamping": {
+      "caption": "Stamping bay",
+      "detail": "Line 03"
+    },
+    "italpress": {
+      "caption": "Process control",
+      "detail": "Die cast · live"
+    },
+    "idra": {
+      "caption": "Die casting",
+      "detail": "IDRA · Brescia"
+    },
+    "crucible": {
+      "caption": "Aluminum pour",
+      "detail": "Foundry · live melt"
+    },
+    "comapress": {
+      "caption": "Die casting",
+      "detail": "Colosio · CO.MA.PRESS"
+    },
+    "colosio": {
+      "caption": "Casting cell",
+      "detail": "Colosio · Botticino"
+    },
+    "comapressPanel": {
+      "caption": "System bay",
+      "detail": "CO.MA.PRESS"
+    }
   }
 }

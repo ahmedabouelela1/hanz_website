@@ -36,7 +36,7 @@ export default async function AboutPage({
         kicker={a.hero.kicker}
         title={a.hero.title}
         lead={a.hero.lead}
-        index="02 — About"
+        index={`02 — ${dict.nav.about}`}
       />
 
       {/* Philosophy + image */}

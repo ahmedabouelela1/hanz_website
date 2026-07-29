@@ -75,7 +75,7 @@ export function Footer({ locale, dict }: FooterProps) {
                 </a>
               </li>
               <li className="max-w-[16rem] text-sm text-steel-400">
-                {siteContact.address}
+                {dict.contact.info.addressValue}
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ export function Footer({ locale, dict }: FooterProps) {
             <div className="mt-6 inline-flex items-center gap-2 border border-steel-900 px-3 py-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-steel-400">
-                ISO 9001 · Certified
+                {dict.footer.certified}
               </span>
             </div>
           </div>

@@ -34,7 +34,7 @@ export default async function PartnersPage({
         kicker={dict.partners.hero.kicker}
         title={dict.partners.hero.title}
         lead={dict.partners.hero.lead}
-        index="04 — Partners"
+        index={`04 — ${dict.nav.partners}`}
       />
 
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">

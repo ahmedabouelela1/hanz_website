@@ -27,13 +27,13 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={locale} dict={dict} />
-      <Capabilities dict={dict} />
-      <StatsBand dict={dict} />
-      <CatalogPreview locale={locale} dict={dict} products={products} />
+      <div id="capabilities"><Capabilities dict={dict} /></div>
+      <div id="stats"><StatsBand dict={dict} /></div>
+      <div id="catalog"><CatalogPreview locale={locale} dict={dict} products={products} /></div>
       <Process dict={dict} />
-      <FactoryFloor locale={locale} dict={dict} />
-      <PartnersMarquee dict={dict} partners={partners} />
-      <CtaBand locale={locale} dict={dict} />
+      <div id="factory"><FactoryFloor locale={locale} dict={dict} /></div>
+      <div id="partners"><PartnersMarquee dict={dict} partners={partners} /></div>
+      <div id="cta"><CtaBand locale={locale} dict={dict} /></div>
     </>
   );
 }

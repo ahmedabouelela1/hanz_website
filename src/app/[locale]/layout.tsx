@@ -17,6 +17,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { siteUrl, siteMeta } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SideToolbar } from "@/components/layout/SideToolbar";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 
 const spaceGrotesk = Space_Grotesk({
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
         <OrganizationJsonLd tagline={dict.brand.tagline} />
         <Header locale={typedLocale} dict={dict} />
         <main className="flex-1">{children}</main>
+        <SideToolbar locale={typedLocale} dict={dict} />
         <Footer locale={typedLocale} dict={dict} />
       </body>
     </html>

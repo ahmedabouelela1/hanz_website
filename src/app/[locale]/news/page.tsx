@@ -38,7 +38,7 @@ export default async function NewsPage({
         kicker={dict.news.hero.kicker}
         title={dict.news.hero.title}
         lead={dict.news.hero.lead}
-        index="05 — News"
+        index={`05 — ${dict.nav.news}`}
       />
 
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">

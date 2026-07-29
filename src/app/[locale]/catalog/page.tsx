@@ -34,7 +34,7 @@ export default async function CatalogPage({
         kicker={dict.catalog.hero.kicker}
         title={dict.catalog.hero.title}
         lead={dict.catalog.hero.lead}
-        index="03 — Catalog"
+        index={`03 — ${dict.nav.catalog}`}
       />
       <section className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <CatalogBrowser

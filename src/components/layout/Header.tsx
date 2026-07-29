@@ -37,6 +37,10 @@ export function Header({ locale, dict }: HeaderProps) {
 
   const isActive = (href: string) => pathname === localePath(locale, href);
 
+  // The home hero is a full-bleed dark photograph, so the transparent header
+  // has to sit on it light-on-dark until the user scrolls past it.
+  const onDark = pathname === localePath(locale, "/") && !scrolled && !open;
+
   return (
     <header
       className={cn(
@@ -57,8 +61,12 @@ export function Header({ locale, dict }: HeaderProps) {
               className={cn(
                 "link-underline font-mono text-[11px] uppercase tracking-[0.14em] transition-colors",
                 isActive(route.href)
-                  ? "text-accent"
-                  : "text-steel-700 hover:text-ink",
+                  ? onDark
+                    ? "text-accent-hot"
+                    : "text-accent"
+                  : onDark
+                    ? "text-paper/70 hover:text-paper"
+                    : "text-steel-700 hover:text-ink",
               )}
             >
               {dict.nav[route.key as keyof typeof dict.nav]}
@@ -67,10 +75,15 @@ export function Header({ locale, dict }: HeaderProps) {
         </nav>
 
         <div className="hidden items-center gap-6 lg:flex">
-          <LocaleSwitcher current={locale} />
+          <LocaleSwitcher current={locale} onDark={onDark} />
           <Link
             href={localePath(locale, "/quote")}
-            className="group inline-flex items-center gap-2 bg-ink px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-paper transition-colors hover:bg-accent"
+            className={cn(
+              "group inline-flex items-center gap-2 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors",
+              onDark
+                ? "bg-paper text-ink hover:bg-accent hover:text-paper"
+                : "bg-ink text-paper hover:bg-accent",
+            )}
           >
             {dict.nav.quote}
             <span className="transition-transform group-hover:translate-x-0.5 rtl:rotate-180">
@@ -90,19 +103,22 @@ export function Header({ locale, dict }: HeaderProps) {
           <span className="flex flex-col gap-1.5">
             <span
               className={cn(
-                "h-px w-6 bg-ink transition-all duration-300",
+                "h-px w-6 transition-all duration-300",
+                onDark ? "bg-paper" : "bg-ink",
                 open && "translate-y-[7px] rotate-45",
               )}
             />
             <span
               className={cn(
-                "h-px w-6 bg-ink transition-all duration-300",
+                "h-px w-6 transition-all duration-300",
+                onDark ? "bg-paper" : "bg-ink",
                 open && "opacity-0",
               )}
             />
             <span
               className={cn(
-                "h-px w-6 bg-ink transition-all duration-300",
+                "h-px w-6 transition-all duration-300",
+                onDark ? "bg-paper" : "bg-ink",
                 open && "-translate-y-[7px] -rotate-45",
               )}
             />

@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { localePath } from "@/lib/nav";
-import { factoryPhotos } from "@/lib/factory";
+import { factoryPhotosFor } from "@/lib/factory";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,14 +12,10 @@ interface FactoryFloorProps {
   dict: Dictionary;
 }
 
-const strip = [
-  factoryPhotos.productionLine,
-  factoryPhotos.italpress,
-  factoryPhotos.stamping,
-] as const;
-
 export function FactoryFloor({ locale, dict }: FactoryFloorProps) {
   const f = dict.home.factory;
+  const photos = factoryPhotosFor(dict);
+  const strip = [photos.colosio, photos.idra, photos.crucible];
 
   return (
     <section className="border-y border-hairline bg-surface">
